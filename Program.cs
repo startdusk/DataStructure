@@ -1,6 +1,8 @@
-﻿using DataStructure.Array;
+﻿using System.Collections;
+using System.Diagnostics;
+using DataStructure.Array;
 
-var array = new MyArray(20);
+var array = new MyArray<int>(20);
 for (int i = 0; i < 10; i++)
 {
     array.AddLast(i);
@@ -37,3 +39,52 @@ for (int i = 0; i < 16; i++)
     array.AddLast(i * 10);
     Console.Write(array);
 }
+
+var n = 10000000;
+var t1 = new Stopwatch();
+Console.WriteLine("测试值类型对象int");
+t1.Start();
+var l = new List<int>();
+for (int i = 0; i < n; i++)
+{
+    l.Add(i); // 不发生装箱
+    int x = l[i]; // 不发生拆箱
+}
+t1.Stop();
+Console.WriteLine("测试值类型对象int 耗时" + t1.ElapsedMilliseconds + "ms");
+var t2 = new Stopwatch();
+Console.WriteLine("测试引用类型对象int");
+t2.Start();
+var l1 = new ArrayList();
+for (int i = 0; i < n; i++)
+{
+    l1.Add(i); // 发生装箱
+    int x = (int)l1[i]; // 发生拆箱
+}
+t2.Stop();
+Console.WriteLine("测试引用类型对象int 耗时" + t2.ElapsedMilliseconds + "ms");
+
+
+var t3 = new Stopwatch();
+Console.WriteLine("测试引用类型对象string");
+t3.Start();
+var l2 = new List<string>();
+for (int i = 0; i < n; i++)
+{
+    l2.Add("x"); // 不发生装箱
+    string x = l2[i]; // 不发生拆箱
+}
+t3.Stop();
+Console.WriteLine("测试引用类型对象string 耗时" + t3.ElapsedMilliseconds + "ms");
+var t4 = new Stopwatch();
+Console.WriteLine("测试引用类型对象string");
+t4.Start();
+var l3 = new ArrayList();
+for (int i = 0; i < n; i++)
+{
+    // string是引用类型
+    l3.Add("x"); // 不发生装箱
+    string x = (string)l3[i]; // 不发生拆箱
+}
+t4.Stop();
+Console.WriteLine("测试引用类型对象string 耗时" + t4.ElapsedMilliseconds + "ms");

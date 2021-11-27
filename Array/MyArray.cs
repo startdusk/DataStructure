@@ -2,19 +2,20 @@ using System.Text;
 
 namespace DataStructure.Array;
 
-public class MyArray
+// 约束泛型：https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/where-generic-type-constraint
+public class MyArray<E> where E : IComparable<E>
 {
-    private int[] data;
+    private E[] data;
     private int count;
 
     public MyArray(int capactity)
     {
-        data = new int[capactity];
+        data = new E[capactity];
         count = 0;
     }
 
     public MyArray() : this(10) { }
-    public void Set(int index, int newE)
+    public void Set(int index, E newE)
     {
         if (index < 0 || index > count)
         {
@@ -22,22 +23,22 @@ public class MyArray
         }
         data[index] = newE;
     }
-    public bool Contains(int e)
+    public bool Contains(E e)
     {
         foreach (var item in data)
         {
-            if (item == e)
+            if (item.Equals(e))
             {
                 return true;
             }
         }
         return false;
     }
-    public int IndexOf(int e)
+    public int IndexOf(E e)
     {
         for (int i = 0; i < count; i++)
         {
-            if (data[i] == e)
+            if (data[i].Equals(e))
             {
                 return i;
             }
@@ -45,7 +46,7 @@ public class MyArray
 
         return -1;
     }
-    public void Remove(int e)
+    public void Remove(E e)
     {
         var index = IndexOf(e);
         if (index != -1)
@@ -53,7 +54,7 @@ public class MyArray
             RemoveAt(index);
         }
     }
-    public int RemoveAt(int index)
+    public E RemoveAt(int index)
     {
         if (index < 0 || index > count)
         {
@@ -65,22 +66,22 @@ public class MyArray
             data[i - 1] = data[i];
         }
         count--;
-        data[count] = default(int);
+        data[count] = default(E);
         if (data.Length / 4 == count)
         {
             ResetCapacity(data.Length / 2);
         }
         return del;
     }
-    public int RemoveFirst()
+    public E RemoveFirst()
     {
         return RemoveAt(0);
     }
-    public int RemoveLast()
+    public E RemoveLast()
     {
         return RemoveAt(count - 1);
     }
-    public int Get(int index)
+    public E Get(int index)
     {
         if (index < 0 || index > count)
         {
@@ -88,23 +89,23 @@ public class MyArray
         }
         return data[index];
     }
-    public int GetFirst()
+    public E GetFirst()
     {
         return Get(0);
     }
-    public int GetLast()
+    public E GetLast()
     {
         return Get(count - 1);
     }
-    public void AddFirst(int e)
+    public void AddFirst(E e)
     {
         Insert(0, e);
     }
-    public void AddLast(int e)
+    public void AddLast(E e)
     {
         Insert(count, e);
     }
-    public void Insert(int index, int e)
+    public void Insert(int index, E e)
     {
         if (index < 0 || index > count)
         {
@@ -166,7 +167,7 @@ public class MyArray
 
     private void ResetCapacity(int newCapacity)
     {
-        var newData = new int[newCapacity];
+        var newData = new E[newCapacity];
         for (int i = 0; i < count; i++)
         {
             newData[i] = data[i];
