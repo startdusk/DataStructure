@@ -26,3 +26,14 @@ Console.Write(array);
 
 array.Remove(9);
 Console.Write(array);
+
+for (int i = 0; i < 4; i++)
+{
+    array.RemoveLast();
+    Console.Write(array);
+}
+for (int i = 0; i < 16; i++)
+{
+    array.AddLast(i * 10);
+    Console.Write(array);
+}

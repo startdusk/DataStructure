@@ -66,6 +66,10 @@ public class MyArray
         }
         count--;
         data[count] = default(int);
+        if (data.Length / 4 == count)
+        {
+            ResetCapacity(data.Length / 2);
+        }
         return del;
     }
     public int RemoveFirst()
@@ -109,7 +113,7 @@ public class MyArray
 
         if (count == data.Length)
         {
-            throw new ArgumentException("数组已满");
+            ResetCapacity(data.Length * 2);
         }
         for (int i = count - 1; i >= index; i--)
         {
@@ -158,5 +162,15 @@ public class MyArray
         }
         res.Append("]\n");
         return res.ToString();
+    }
+
+    private void ResetCapacity(int newCapacity)
+    {
+        var newData = new int[newCapacity];
+        for (int i = 0; i < count; i++)
+        {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 }
