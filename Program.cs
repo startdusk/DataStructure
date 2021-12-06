@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Diagnostics;
-using DataStructure.Array;
 
-var array = new MyArray<int>(20);
+var array = new DataStructure.Array.Array<int>(20);
 for (int i = 0; i < 10; i++)
 {
     array.AddLast(i);
@@ -88,3 +87,17 @@ for (int i = 0; i < n; i++)
 }
 t4.Stop();
 Console.WriteLine("测试引用类型对象string 耗时" + t4.ElapsedMilliseconds + "ms");
+
+// LinkedList
+var list = new DataStructure.LinkedList.LinkedList<int>();
+for (int i = 0; i < 10; i++)
+{
+    list.AddFirst(i);
+    Console.WriteLine(list);
+}
+list.AddLast(400);
+Console.WriteLine(list);
+list.Add(2, 999);
+Console.WriteLine(list);
+list.Set(2, 1000);
+Console.WriteLine(list);

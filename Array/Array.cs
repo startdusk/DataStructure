@@ -3,18 +3,18 @@ using System.Text;
 namespace DataStructure.Array;
 
 // 约束泛型：https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/where-generic-type-constraint
-public class MyArray<E> where E : IComparable<E>
+public class Array<E> where E : IComparable<E>
 {
     private E[] data;
     private int count;
 
-    public MyArray(int capactity)
+    public Array(int capactity)
     {
         data = new E[capactity];
         count = 0;
     }
 
-    public MyArray() : this(10) { }
+    public Array() : this(10) { }
     public void Set(int index, E newE)
     {
         if (index < 0 || index > count)
@@ -151,7 +151,7 @@ public class MyArray<E> where E : IComparable<E>
     public override string ToString()
     {
         var res = new StringBuilder();
-        res.Append(string.Format("MyArray: count={0} capacity={1}\n", count, data.Length));
+        res.Append(string.Format("Array: count={0} capacity={1}\n", count, data.Length));
         res.Append("[");
         for (int i = 0; i < count; i++)
         {
