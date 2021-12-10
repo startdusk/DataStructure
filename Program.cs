@@ -101,3 +101,20 @@ list.Add(2, 999);
 Console.WriteLine(list);
 list.Set(2, 1000);
 Console.WriteLine(list);
+
+// 9->8->1000->7->6->5->4->3->2->1->0->400->Null
+
+list.RemoveAt(2);
+// 9->8->7->6->5->4->3->2->1->0->400->Null
+Console.WriteLine(list);
+
+list.RemoveFirst();
+// 8->7->6->5->4->3->2->1->0->400->Null
+Console.WriteLine(list);
+
+list.RemoveLast();
+// 8->7->6->5->4->3->2->1->0->Null
+Console.WriteLine(list);
+list.Remove(0);
+// 8->7->6->5->4->3->2->1->Null
+Console.WriteLine(list);

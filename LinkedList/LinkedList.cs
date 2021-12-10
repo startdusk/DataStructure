@@ -110,6 +110,74 @@ public class LinkedList<E>
     {
         Add(N, e);
     }
+    public E RemoveAt(int index)
+    {
+        if (index < 0 || index > N)
+        {
+            throw new ArgumentException("非法索引");
+        }
+        // 删除第一个节点
+        if (index == 0)
+        {
+            var delNode = head;
+            head = head.next;
+            N--;
+            return delNode.e;
+        }
+        else
+        {
+            var pre = head;
+            for (int i = 0; i < index - 1; i++)
+            {
+                pre = pre.next;
+            }
+
+            var delNode = pre.next;
+            pre.next = delNode.next;
+            N--;
+            return delNode.e;
+        }
+    }
+    public E RemoveFirst()
+    {
+        return RemoveAt(0);
+    }
+    public E RemoveLast()
+    {
+        return RemoveAt(N - 1);
+    }
+
+    public void Remove(E e)
+    {
+        if (head == null)
+        { return; }
+
+        if (head.e.Equals(e))
+        {
+            head = head.next;
+        }
+        else
+        {
+            Node pre = null;
+            var cur = head;
+            while (cur != null)
+            {
+                if (cur.e.Equals(e))
+                {
+                    break;
+                }
+
+                pre = cur;
+                cur = cur.next;
+            }
+            if (cur != null)
+            {
+                pre.next = pre.next.next;
+                N--;
+            }
+        }
+    }
+
     public int Count
     {
         get { return N; }
