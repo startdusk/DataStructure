@@ -4,7 +4,10 @@ namespace DataStructure.Stack;
 public class ArrayStack<E> : IStack<E>
 {
     private Array<E> arr;
-
+    public ArrayStack()
+    {
+        arr = new Array<E>();
+    }
     public ArrayStack(int capacity)
     {
         arr = new Array<E>(capacity);

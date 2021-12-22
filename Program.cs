@@ -129,3 +129,41 @@ Console.WriteLine(arrayStack);
 Console.WriteLine(arrayStack.Peek());
 arrayStack.Pop();
 Console.WriteLine(arrayStack);
+
+var linkedListStack = new DataStructure.Stack.LinkedListStack<int>();
+for (int i = 0; i < 5; i++)
+{
+    linkedListStack.Push(i);
+}
+Console.WriteLine(linkedListStack);
+Console.WriteLine(linkedListStack.Peek());
+linkedListStack.Pop();
+Console.WriteLine(linkedListStack);
+
+
+var N = 10000000;
+var arrStack = new DataStructure.Stack.ArrayStack<int>();
+var llStack = new DataStructure.Stack.LinkedListStack<int>();
+var t1 = Test.TestStack(arrayStack, N);
+Console.WriteLine("ArrayStack time: " + t1 + "ms");
+var t2 = Test.TestStack(llStack, N);
+Console.WriteLine("LinkedListStack time: " + t2 + "ms");
+
+class Test
+{
+    public static long TestStack(DataStructure.Stack.IStack<int> stack, int N)
+    {
+        Stopwatch t = new Stopwatch();
+        t.Start();
+        for (var i = 0; i < N; i++)
+        {
+            stack.Push(i);
+        }
+        for (var i = 0; i < N; i++)
+        {
+            stack.Pop();
+        }
+        t.Stop();
+        return t.ElapsedMilliseconds;
+    }
+}
