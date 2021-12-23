@@ -29,4 +29,10 @@ public class ArrayQueue<E> : IQueue<E>
     {
         return arr.GetFirst();
     }
+
+
+    public override string ToString()
+    {
+        return "Queue:  front " + arr.ToString() + " tail";
+    }
 }
