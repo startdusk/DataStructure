@@ -120,50 +120,60 @@ using System.Diagnostics;
 // // 8->7->6->5->4->3->2->1->Null
 // Console.WriteLine(list);
 
-var arrayStack = new DataStructure.Stack.ArrayStack<int>(10);
+// var arrayStack = new DataStructure.Stack.ArrayStack<int>(10);
+// for (int i = 0; i < 5; i++)
+// {
+//     arrayStack.Push(i);
+// }
+// Console.WriteLine(arrayStack);
+// Console.WriteLine(arrayStack.Peek());
+// arrayStack.Pop();
+// Console.WriteLine(arrayStack);
+
+// var linkedListStack = new DataStructure.Stack.LinkedListStack<int>();
+// for (int i = 0; i < 5; i++)
+// {
+//     linkedListStack.Push(i);
+// }
+// Console.WriteLine(linkedListStack);
+// Console.WriteLine(linkedListStack.Peek());
+// linkedListStack.Pop();
+// Console.WriteLine(linkedListStack);
+
+
+// var N = 10000000;
+// var arrStack = new DataStructure.Stack.ArrayStack<int>();
+// var llStack = new DataStructure.Stack.LinkedListStack<int>();
+// var t1 = Test.TestStack(arrayStack, N);
+// Console.WriteLine("ArrayStack time: " + t1 + "ms");
+// var t2 = Test.TestStack(llStack, N);
+// Console.WriteLine("LinkedListStack time: " + t2 + "ms");
+
+// class Test
+// {
+//     public static long TestStack(DataStructure.Stack.IStack<int> stack, int N)
+//     {
+//         Stopwatch t = new Stopwatch();
+//         t.Start();
+//         for (var i = 0; i < N; i++)
+//         {
+//             stack.Push(i);
+//         }
+//         for (var i = 0; i < N; i++)
+//         {
+//             stack.Pop();
+//         }
+//         t.Stop();
+//         return t.ElapsedMilliseconds;
+//     }
+// }
+
+
+var loopArrayQueue = new DataStructure.Queue.LoopArrayQueue<int>();
 for (int i = 0; i < 5; i++)
 {
-    arrayStack.Push(i);
+    loopArrayQueue.Enqueue(i);
+    Console.WriteLine(loopArrayQueue);
 }
-Console.WriteLine(arrayStack);
-Console.WriteLine(arrayStack.Peek());
-arrayStack.Pop();
-Console.WriteLine(arrayStack);
-
-var linkedListStack = new DataStructure.Stack.LinkedListStack<int>();
-for (int i = 0; i < 5; i++)
-{
-    linkedListStack.Push(i);
-}
-Console.WriteLine(linkedListStack);
-Console.WriteLine(linkedListStack.Peek());
-linkedListStack.Pop();
-Console.WriteLine(linkedListStack);
-
-
-var N = 10000000;
-var arrStack = new DataStructure.Stack.ArrayStack<int>();
-var llStack = new DataStructure.Stack.LinkedListStack<int>();
-var t1 = Test.TestStack(arrayStack, N);
-Console.WriteLine("ArrayStack time: " + t1 + "ms");
-var t2 = Test.TestStack(llStack, N);
-Console.WriteLine("LinkedListStack time: " + t2 + "ms");
-
-class Test
-{
-    public static long TestStack(DataStructure.Stack.IStack<int> stack, int N)
-    {
-        Stopwatch t = new Stopwatch();
-        t.Start();
-        for (var i = 0; i < N; i++)
-        {
-            stack.Push(i);
-        }
-        for (var i = 0; i < N; i++)
-        {
-            stack.Pop();
-        }
-        t.Stop();
-        return t.ElapsedMilliseconds;
-    }
-}
+loopArrayQueue.Dequeue();
+Console.WriteLine(loopArrayQueue);

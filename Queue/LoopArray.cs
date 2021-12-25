@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DataStructure.Array;
+namespace DataStructure.Queue;
 
 // 循环数组
 public class LoopArray<E>
