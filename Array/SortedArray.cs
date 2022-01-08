@@ -90,6 +90,65 @@ public class SortedArray<Key> where Key : IComparable<Key>
         }
     }
 
+    public Key Min()
+    {
+        if (IsEmpty)
+            throw new ArgumentException("数组为空");
+
+        return keys[0];
+    }
+
+    public Key Max()
+    {
+        if (IsEmpty)
+            throw new ArgumentException("数组为空");
+
+        return keys[N - 1];
+    }
+
+    public Key Select(int idx)
+    {
+        if (idx < 0 || idx >= N)
+            throw new ArgumentException("索引越界");
+
+        return keys[idx];
+    }
+
+    public bool Contains(Key key)
+    {
+        int i = Rank(key);
+        if (i < N || keys[i].CompareTo(key) == 0)
+            return true;
+        return false;
+    }
+
+    // 找出小于或等于key的最大键
+    public Key Floor(Key key)
+    {
+        int i = Rank(key);
+        if (i < N || keys[i].CompareTo(key) == 0)
+            return keys[i];
+
+        if (i == 0)
+        {
+            throw new ArgumentException("没有找到小于或等于" + key + "的最大键");
+        }
+        else
+        {
+            return keys[i - 1];
+        }
+    }
+
+    // 找出大于或等于key的最小键
+    public Key Celling(Key key)
+    {
+        int i = Rank(key);
+        if (i == N)
+        {
+            throw new ArgumentException("没有找到大于或等于" + key + "的最小键");
+        }
+        return keys[i];
+    }
 
     public override string ToString()
     {
