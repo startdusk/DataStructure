@@ -101,4 +101,28 @@ public class BST<E> where E : IComparable<E>
 
         return node;
     }
+
+    public bool Contains(E e)
+    {
+        return Contains(root, e);
+    }
+
+    // 以node为根的树是包含元素e
+    private bool Contains(Node node, E e)
+    {
+        if (node == null)
+        {
+            return false;
+        }
+        if (e.CompareTo(node.e) < 0)
+        {
+            return Contains(node.left, e);
+        }
+        else if (e.CompareTo(node.e) > 0)
+        {
+            return Contains(node.right, e);
+        }
+
+        return true;
+    }
 }
