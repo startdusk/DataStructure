@@ -74,4 +74,31 @@ public class BST<E> where E : IComparable<E>
 
         N++;
     }
+
+    // 递归添加元素
+    public void Add(E e)
+    {
+        Add(root, e);
+    }
+
+    // 以node为根的树添加元素e, 添加后返回根节点node
+    private Node Add(Node node, E e)
+    {
+        if (node == null)
+        {
+            N++;
+            return new Node(e);
+        }
+
+        if (e.CompareTo(node.e) < 0)
+        {
+            node.left = Add(node.left, e);
+        }
+        else if (e.CompareTo(node.e) > 0)
+        {
+            node.right = Add(node.right, e);
+        }
+
+        return node;
+    }
 }
