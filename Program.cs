@@ -169,11 +169,28 @@ using System.Diagnostics;
 // }
 
 
-var loopArrayQueue = new DataStructure.Queue.LoopArrayQueue<int>();
-for (int i = 0; i < 5; i++)
+// var loopArrayQueue = new DataStructure.Queue.LoopArrayQueue<int>();
+// for (int i = 0; i < 5; i++)
+// {
+//     loopArrayQueue.Enqueue(i);
+//     Console.WriteLine(loopArrayQueue);
+// }
+// loopArrayQueue.Dequeue();
+// Console.WriteLine(loopArrayQueue);
+
+int[] a = { 8, 4, 12, 2, 6, 10, 14 };
+DataStructure.BST.BST<int> bst = new DataStructure.BST.BST<int>();
+foreach (var v in a)
 {
-    loopArrayQueue.Enqueue(i);
-    Console.WriteLine(loopArrayQueue);
+    bst.Add(v);
 }
-loopArrayQueue.Dequeue();
-Console.WriteLine(loopArrayQueue);
+
+Console.WriteLine("pre order");
+bst.PreOrder(); // 8 4 2 6 12 10 14
+Console.WriteLine();
+Console.WriteLine("in order");
+bst.InOrder(); // 2 4 6 8 10 12 14
+Console.WriteLine();
+Console.WriteLine("post order");
+bst.PostOrder(); // 2 6 4 10 14 12 8
+

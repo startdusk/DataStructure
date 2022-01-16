@@ -125,4 +125,55 @@ public class BST<E> where E : IComparable<E>
 
         return true;
     }
+
+    // 前序遍历
+    // 前序遍历对于每一个节点都遵循根节点->左节点->右节点的顺序访问
+    public void PreOrder()
+    {
+        PreOrder(root);
+    }
+
+    private void PreOrder(Node node)
+    {
+        if (node == null)
+            return;
+
+        Console.WriteLine(node.e);
+
+        PreOrder(node.left);
+        PreOrder(node.right);
+    }
+
+    // 中序遍历
+    // 中序遍历对于每一个节点都遵循左节点->根节点->右节点的顺序访问
+    public void InOrder()
+    {
+        InOrder(root);
+    }
+
+    private void InOrder(Node node)
+    {
+        if (node == null)
+            return;
+        InOrder(node.left);
+        Console.WriteLine(node.e);
+        InOrder(node.right);
+    }
+
+    // 后序遍历
+    // 后序遍历对于每一个节点都遵循左节点->右节点->根节点的顺序访问
+    public void PostOrder()
+    {
+        PostOrder(root);
+    }
+
+    private void PostOrder(Node node)
+    {
+        if (node == null)
+            return;
+
+        PostOrder(node.left);
+        PostOrder(node.right);
+        Console.WriteLine(node.e);
+    }
 }
