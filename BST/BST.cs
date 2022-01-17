@@ -176,4 +176,27 @@ public class BST<E> where E : IComparable<E>
         PostOrder(node.right);
         Console.WriteLine(node.e);
     }
+
+    // 层序遍历
+    public void LevelOrder()
+    {
+        Queue<Node> q = new Queue<Node>();
+        q.Enqueue(root);
+
+        while (q.Count != 0)
+        {
+            Node cur = q.Dequeue();
+            Console.WriteLine(cur.e);
+
+            if (cur.left != null)
+            {
+                q.Enqueue(cur.left);
+            }
+
+            if (cur.right != null)
+            {
+                q.Enqueue(cur.right);
+            }
+        }
+    }
 }

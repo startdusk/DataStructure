@@ -194,3 +194,5 @@ Console.WriteLine();
 Console.WriteLine("post order");
 bst.PostOrder(); // 2 6 4 10 14 12 8
 
+Console.WriteLine("level order");
+bst.LevelOrder();
