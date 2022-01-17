@@ -199,4 +199,84 @@ public class BST<E> where E : IComparable<E>
             }
         }
     }
+    // 返回以node为根的二叉树的最小值所在的节点
+    public E Min()
+    {
+        if (IsEmpty)
+        {
+            throw new ArgumentException("empty tree");
+        }
+        var node = Min(root);
+        return node.e;
+    }
+
+    private Node Min(Node node)
+    {
+        if (node.left == null)
+        {
+            return node;
+        }
+
+        return Min(node.left);
+    }
+
+    // 返回以node为根的二叉树的最大值所在的节点
+    public E Max()
+    {
+        if (IsEmpty)
+        {
+            throw new ArgumentException("empty tree");
+        }
+        var node = Max(root);
+        return node.e;
+    }
+
+    private Node Max(Node node)
+    {
+        if (node.right == null)
+        {
+            return node;
+        }
+        return Max(node.right);
+    }
+    // 删除掉以node为根的二叉树中最小的节点
+    public E RemoveMin()
+    {
+        E ret = Min();
+        root = RemoveMin(root);
+        return ret;
+    }
+    private Node RemoveMin(Node node)
+    {
+        if (node.left == null)
+        {
+            N--;
+            return node.right;
+        }
+
+        // 删除并挂接上去
+        node.left = RemoveMin(node.left);
+        return node;
+    }
+
+    // 删除掉以node为根的二叉树中最大的节点
+    public E RemoveMax()
+    {
+        E ret = Max();
+        root = RemoveMax(root);
+        return ret;
+    }
+
+    private Node RemoveMax(Node node)
+    {
+        if (node.right == null)
+        {
+            N--;
+            return node.left;
+        }
+
+        // 删除并挂接上去
+        node.right = RemoveMax(node.right);
+        return node;
+    }
 }
