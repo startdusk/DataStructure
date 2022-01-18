@@ -279,4 +279,51 @@ public class BST<E> where E : IComparable<E>
         node.right = RemoveMax(node.right);
         return node;
     }
+
+    // 删除掉以node为根的二叉树中值为e的节点
+    // 返回删除节点后新的二叉查找树的根
+    public void Remove(E e)
+    {
+        root = Remove(root, e);
+    }
+
+    // 删除掉以node为根的二叉树中值为e的节点
+    // 返回删除节点后新的二叉查找树的根
+    private Node Remove(Node node, E e)
+    {
+        if (node == null)
+            return null;
+
+        if (e.CompareTo(node.e) < 0)
+        {
+            node.left = Remove(node.left, e);
+            return node;
+        }
+        else if (e.CompareTo(node.e) > 0)
+        {
+            node.right = Remove(node.right, e);
+            return node;
+        }
+        else // e.CompareTo(node.e) == 0
+        {
+            if (node.right == null)
+            {
+                N--;
+                return node.left;
+            }
+            if (node.left == null)
+            {
+                N--;
+                return node.right;
+            }
+
+            // 要删除的节点左右都有孩子
+            // 找到比待删除的节点大的最小节点，即待删除右子树的最小节点
+            // 用这个节点顶替待删除节点的位置
+            Node s = Min(node.right);
+            s.right = RemoveMin(node.right);
+            s.left = node.left;
+            return s;
+        }
+    }
 }
