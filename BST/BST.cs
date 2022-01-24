@@ -304,14 +304,14 @@ public class BST<E> where E : IComparable<E>
             node.right = Remove(node.right, e);
             return node;
         }
-        else // e.CompareTo(node.e) == 0
+        else // e.CompareTo(node.e) == 0 找到要删除的节点
         {
-            if (node.right == null)
+            if (node.right == null) // 如果要删除的节点没有右孩子，那么就返回左孩子
             {
                 N--;
                 return node.left;
             }
-            if (node.left == null)
+            if (node.left == null) // 如果要删除的节点没有左孩子，那么就返回右孩子
             {
                 N--;
                 return node.right;
