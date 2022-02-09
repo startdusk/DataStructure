@@ -246,6 +246,7 @@ public class BST<E> where E : IComparable<E>
         root = RemoveMin(root);
         return ret;
     }
+
     private Node RemoveMin(Node node)
     {
         if (node.left == null)
@@ -325,5 +326,19 @@ public class BST<E> where E : IComparable<E>
             s.left = node.left;
             return s;
         }
+    }
+
+    // 获取这个二叉树的最大高度
+    public int MaxHeight()
+    {
+        return MaxHeight(root);
+    }
+    private int MaxHeight(Node node)
+    {
+        if (node == null) return 0;
+
+        int l = MaxHeight(node.left);
+        int r = MaxHeight(node.right);
+        return Math.Max(l, r) + 1;
     }
 }
