@@ -45,4 +45,18 @@ public class RBT<E> where E : IComparable<E>
         return node.color;
     }
 
+    //     node                           x
+    //    /    \       左旋转             / \
+    //   T1     x --------------->   node   T2
+    //         / \                   /   \    
+    //        T2  T3                T1    T2
+    private Node LeftRotate(Node node)
+    {
+        Node x = node.right;
+        node.right = x.left;
+        x.left = node;
+        x.color = node.color;
+        node.color = Red;
+        return x;
+    }
 }
